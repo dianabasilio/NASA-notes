@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Post.module.scss";
 
-function Post(props) {
+function Post({ author, body }) {
   return (
-    <div className={styles.post}>
-      <p>{props.author}</p>
-      <p>{props.body}</p>
-    </div>
+    <li className={styles.post}>
+      <p className={styles.author}>{author}</p>
+      <p className={styles.text}>{body}</p>
+    </li>
   );
 }
 
