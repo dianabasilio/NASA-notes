@@ -6,7 +6,6 @@ import styles from "./PostList.module.scss";
 
 export default function PostList({ isPosting, onStopPosting }) {
   const [posts, setPosts] = useState([]);
-
   const addPostHandler = (postData) => {
     //To ensure to get the last state
     setPosts((prevPosts) => [postData, ...prevPosts]);
@@ -24,7 +23,12 @@ export default function PostList({ isPosting, onStopPosting }) {
       {posts.length > 0 && (
         <ul className={styles.posts}>
           {posts.map((post, index) => (
-            <Post key={index} author={post.author} body={post.body} />
+            <Post
+              key={index}
+              author={post.author}
+              body={post.body}
+              urlImage={post.urlImage}
+            />
           ))}
         </ul>
       )}
