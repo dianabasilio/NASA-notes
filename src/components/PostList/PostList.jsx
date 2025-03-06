@@ -4,32 +4,36 @@ import NewPost from "../NewPost/NewPost";
 import Modal from "../Modal/Modal";
 import styles from "./PostList.module.scss";
 
-export default function PostList({ isPosting, stopPosting }) {
-  const [enteredBody, setEnteredBody] = useState("");
-  const [enteredAuthor, setEnteredAuthor] = useState("");
+export default function PostList({ isPosting, onStopPosting }) {
+  const [posts, setPosts] = useState([]);
 
-  const bodyChaneHandler = (event) => {
-    setEnteredBody(event.target.value);
-  };
-
-  const authorChaneHandler = (event) => {
-    setEnteredAuthor(event.target.value);
+  const addPostHandler = (postData) => {
+    //To ensure to get the last state
+    setPosts((prevPosts) => [postData, ...prevPosts]);
   };
   return (
     <>
       {isPosting && (
-        <Modal onClose={stopPosting}>
+        <Modal>
           <NewPost
-            onBodyChange={bodyChaneHandler}
-            onAuthorChange={authorChaneHandler}
+            onCancel={onStopPosting}
+            onAddPost={addPostHandler}
           ></NewPost>
         </Modal>
       )}
-
-      <ul className={styles.posts}>
-        <Post author={enteredAuthor} body={enteredBody} />
-        <Post author="Lau" body="Romantic date today" />
-      </ul>
+      {posts.length > 0 && (
+        <ul className={styles.posts}>
+          {posts.map((post, index) => (
+            <Post key={index} author={post.author} body={post.body} />
+          ))}
+        </ul>
+      )}
+      {posts.length === 0 && (
+        <div className={styles["no-posts"]}>
+          <h2>There are no posts yet.</h2>
+          <p>Start adding some!</p>
+        </div>
+      )}
     </>
   );
 }
