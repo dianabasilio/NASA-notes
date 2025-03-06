@@ -8,7 +8,7 @@ export default function PostList({ isPosting, onStopPosting }) {
   const [posts, setPosts] = useState([]);
   const addPostHandler = (postData) => {
     //To ensure to get the last state
-    setPosts((prevPosts) => [postData, ...prevPosts]);
+    setPosts((prevPosts) => [...prevPosts, postData]);
   };
   return (
     <>
