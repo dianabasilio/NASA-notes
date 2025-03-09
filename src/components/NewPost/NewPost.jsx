@@ -5,6 +5,7 @@ export default function NewPost({ onCancel, onAddPost }) {
   const [enteredBody, setEnteredBody] = useState("");
   const [enteredAuthor, setEnteredAuthor] = useState("");
   const [nasaData, setNasaData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (nasaData.length > 0) {
@@ -33,6 +34,7 @@ export default function NewPost({ onCancel, onAddPost }) {
 
   const addNasaImageHandler = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch(
         "https://api.nasa.gov/planetary/apod?api_key=6DcJLjJDus9Rm7Q0XtXQV1kMP8RigmCosPP2hVZt&start_date=2017-04-11&end_date=2017-04-20",
         { method: "GET" }
@@ -41,6 +43,8 @@ export default function NewPost({ onCancel, onAddPost }) {
       setNasaData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -78,7 +82,12 @@ export default function NewPost({ onCancel, onAddPost }) {
         <button type="button" onClick={onCancel}>
           Cancel
         </button>
-        <button>Submit</button>
+        <button
+          disabled={isLoading}
+          className={isLoading ? styles.loading : ""}
+        >
+          {isLoading ? "Loading..." : "Submit"}
+        </button>
       </p>
     </form>
   );

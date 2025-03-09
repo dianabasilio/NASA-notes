@@ -52,3 +52,33 @@
 .actions button[type="button"]:hover {
   color: #d1bee6;
 }
+
+.actions button.loading {
+  position: relative;
+  background-color: #555;
+  opacity: 0.7;
+  cursor: default;
+}
+
+.actions button.loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
