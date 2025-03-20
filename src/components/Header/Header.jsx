@@ -7,12 +7,12 @@ function Header({ onCreatePost }) {
     <header className={styles.header}>
       <h1 className={styles.logo}>
         <MdMessage />
-        React Poster
+        NASA Posts
       </h1>
       <p>
         <button className={styles.button} onClick={onCreatePost}>
           <MdPostAdd size={18} />
-          New Post
+          Add new NASA Post
         </button>
       </p>
     </header>
