@@ -12,11 +12,11 @@ function Header({ onCreatePost }) {
 
       <div className={styles.buttons}>
         <Link to="/favorites" className={styles.button}>
-          Favorites
+          favorites
         </Link>
         <Link to="/" className={styles.button} onClick={onCreatePost}>
           <MdPostAdd size={18} />
-          Add new NASA Post
+          new NASA Post
         </Link>
       </div>
     </header>
