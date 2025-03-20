@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import styles from "./Post.module.scss";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import styles from "./Post.module.scss";
+import { PostsContext } from "../../store/PostsContext";
 
-function Post({ author, body, urlImage }) {
-  const [isLiked, setIsLiked] = useState(false);
+function Post({ author, body, urlImage, isFavorite, index }) {
+  const { toggleFavorite } = useContext(PostsContext);
 
   const handleLike = () => {
-    setIsLiked(!isLiked);
+    toggleFavorite(index);
   };
 
   return (
@@ -16,7 +17,7 @@ function Post({ author, body, urlImage }) {
       <p className={styles.author}>{author}</p>
       <p className={styles.text}>{body}</p>
       <button className={styles.likeButton} onClick={handleLike}>
-        {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </button>
     </li>
   );

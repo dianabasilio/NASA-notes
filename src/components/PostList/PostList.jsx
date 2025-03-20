@@ -1,23 +1,18 @@
-import { React, useState } from "react";
+import React, { useContext } from "react";
 import Post from "../Post/Post";
 import NewPost from "../NewPost/NewPost";
 import Modal from "../Modal/Modal";
 import styles from "./PostList.module.scss";
+import { PostsContext } from "../../store/PostsContext";
 
 export default function PostList({ isPosting, onStopPosting }) {
-  const [posts, setPosts] = useState([]);
-  const addPostHandler = (postData) => {
-    //To ensure to get the last state
-    setPosts((prevPosts) => [...prevPosts, postData]);
-  };
+  const { posts, addPost } = useContext(PostsContext);
+
   return (
     <>
       {isPosting && (
         <Modal>
-          <NewPost
-            onCancel={onStopPosting}
-            onAddPost={addPostHandler}
-          ></NewPost>
+          <NewPost onCancel={onStopPosting} onAddPost={addPost} />
         </Modal>
       )}
       {posts.length > 0 && (
@@ -28,6 +23,8 @@ export default function PostList({ isPosting, onStopPosting }) {
               author={post.author}
               body={post.body}
               urlImage={post.urlImage}
+              isFavorite={post.isFavorite}
+              index={index}
             />
           ))}
         </ul>
