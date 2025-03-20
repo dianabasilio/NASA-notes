@@ -8,13 +8,18 @@
   align-items: center;
   border-bottom: 2px solid #ece1fa;
 }
-
+.buttons {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+}
 .logo {
   font-size: 2rem;
   display: flex;
   gap: 1.5rem;
   align-items: center;
   color: #ece1fa;
+  text-decoration: none;
 }
 
 .button {
@@ -29,6 +34,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .button:hover {

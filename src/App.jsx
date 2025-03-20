@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import PostList from "./components/PostList/PostList";
 import Header from "./components/Header/Header";
+import Favorites from "./components/pages/Favorites/Favorites";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               />
             }
           />
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </main>
     </>
