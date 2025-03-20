@@ -5,7 +5,7 @@ import styles from "./Header.module.scss";
 function Header({ onCreatePost }) {
   return (
     <header className={styles.header}>
-      <Link to="/favorites" className={styles.logo}>
+      <Link to="/" className={styles.logo}>
         <MdMessage />
         NASA Posts
       </Link>
